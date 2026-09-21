@@ -1,6 +1,6 @@
 {
   "name": "antonio-skills",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Skill per impostare monorepo API + web + mobile, fare il primo grill di dominio e controllare quali issue sono pronte.",
   "author": { "name": "Antonio Virgone" },
   "skills": [
