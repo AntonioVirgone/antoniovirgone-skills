@@ -1,10 +1,10 @@
 {
-  "name": "antonio",
+  "name": "antoniovirgone",
   "owner": { "name": "Antonio Virgone" },
   "description": "Le skill di Antonio per lavorare con gli agenti.",
   "plugins": [
     {
-      "name": "antonio-skills",
+      "name": "antoniovirgone-skills",
       "source": "./",
       "description": "Skill per impostare monorepo API + web + mobile, fare il primo grill di dominio e controllare quali issue sono pronte."
     }

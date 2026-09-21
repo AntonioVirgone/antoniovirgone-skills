@@ -13,7 +13,7 @@ Imposta il repository corrente perché gli agenti ci lavorino con un metodo prec
 - il vocabolario di dominio vive in `CONTEXT.md`, le decisioni in ADR numerati in `docs/adr/`;
 - un **subagente per app**, che conosce il suo stack e le regole condivise.
 
-Questa skill scrive le istruzioni, le convenzioni e i subagenti; il codice delle app e il dominio arrivano dopo. Il passo successivo, a PR mergiata, è `/antonio-skills:monorepo-api-web-mobile-grill-iniziale`.
+Questa skill scrive le istruzioni, le convenzioni e i subagenti; il codice delle app e il dominio arrivano dopo. Il passo successivo, a PR mergiata, è `/antoniovirgone-skills:monorepo-api-web-mobile-grill-iniziale`.
 
 Richiesta dell'utente: $ARGUMENTS
 
@@ -106,7 +106,7 @@ Fatto quando: ogni abitudine ha il suo file e la sua riga nell'indice della memo
 - Branch `chore/setup-agenti`, un commit `chore: imposta CLAUDE.md, docs/agents e le convenzioni di lavoro`, push, `gh pr create` verso `main`.
 - La PR resta aperta: la mergia l'utente.
 
-Chiudi con il link alla PR e ricorda il passo successivo: `/antonio-skills:monorepo-api-web-mobile-grill-iniziale`, in una sessione nuova dopo il merge.
+Chiudi con il link alla PR e ricorda il passo successivo: `/antoniovirgone-skills:monorepo-api-web-mobile-grill-iniziale`, in una sessione nuova dopo il merge.
 
 Fatto quando: la PR esiste e l'utente ha il link.
 

@@ -1,6 +1,6 @@
 ---
 name: monorepo-api-web-mobile-grill-iniziale
-description: Primo grill di dominio di un monorepo appena impostato con /antonio-skills:monorepo-api-web-mobile-setup. A differenza di /grilling, che è generico, segue una scaletta fissa, tratta le specifiche di vecchi progetti come guida e produce CONTEXT.md, i primi ADR, un elenco di issue e una PR.
+description: Primo grill di dominio di un monorepo appena impostato con /antoniovirgone-skills:monorepo-api-web-mobile-setup. A differenza di /grilling, che è generico, segue una scaletta fissa, tratta le specifiche di vecchi progetti come guida e produce CONTEXT.md, i primi ADR, un elenco di issue e una PR.
 disable-model-invocation: true
 ---
 
@@ -16,7 +16,7 @@ Richiesta dell'utente: $ARGUMENTS
 
 ### 1. Prerequisiti
 
-- `docs/agents/domain.md` esiste: è il segno che il setup è stato fatto, e contiene il formato di `CONTEXT.md` e degli ADR. Se manca, di' all'utente di lanciare prima `/antonio-skills:monorepo-api-web-mobile-setup` e fermati.
+- `docs/agents/domain.md` esiste: è il segno che il setup è stato fatto, e contiene il formato di `CONTEXT.md` e degli ADR. Se manca, di' all'utente di lanciare prima `/antoniovirgone-skills:monorepo-api-web-mobile-setup` e fermati.
 - Le skill `grilling` e `domain-modeling` sono disponibili. Se mancano, di' all'utente come installare il plugin (`/plugin install mattpocock-skills@claude-plugins-official`) e fermati.
 - Crea il branch `docs/dominio-iniziale` da `main` aggiornato.
 
@@ -50,7 +50,7 @@ Presenta all'utente:
 2. i termini fissati, gli ADR scritti, le domande rimaste aperte;
 3. un primo elenco di issue, titolo e una riga ciascuna, in un ordine che si possa costruire (prima le fondamenta: scaffolding delle app, tipi condivisi, autenticazione).
 
-Le issue restano una proposta: le crei su GitHub quando l'utente te lo chiede, seguendo `docs/agents/issue-tracker.md`. Ogni issue che dipende da un'altra chiude il corpo con una sezione `## Bloccata da` (una riga `- #N — motivo` per blocco): è quella che `/antonio-skills:controllo-issue` rilegge.
+Le issue restano una proposta: le crei su GitHub quando l'utente te lo chiede, seguendo `docs/agents/issue-tracker.md`. Ogni issue che dipende da un'altra chiude il corpo con una sezione `## Bloccata da` (una riga `- #N — motivo` per blocco): è quella che `/antoniovirgone-skills:controllo-issue` rilegge.
 
 Poi commit (`docs: glossario e primi ADR`), push, `gh pr create` verso `main`. La PR resta aperta: la mergia l'utente.
 
