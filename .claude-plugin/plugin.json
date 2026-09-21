@@ -6,6 +6,7 @@
     "name": "Antonio Virgone"
   },
   "repository": "https://github.com/AntonioVirgone/antoniovirgone-skills",
+  "license": "MIT",
   "skills": [
     "./skills/monorepo-api-web-mobile-setup",
     "./skills/monorepo-api-web-mobile-grill-iniziale",

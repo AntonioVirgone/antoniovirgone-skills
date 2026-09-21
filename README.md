@@ -25,3 +25,7 @@ claude plugin install antoniovirgone-skills@antoniovirgone
 ```
 
 Dopo una modifica alle skill alza `version` in `.claude-plugin/plugin.json`, poi `claude plugin marketplace update antoniovirgone` e `claude plugin update antoniovirgone-skills@antoniovirgone`: senza il cambio di versione resta installata quella vecchia.
+
+## Licenza
+
+MIT — vedi [LICENSE](LICENSE).
