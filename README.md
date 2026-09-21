@@ -15,5 +15,5 @@ claude plugin marketplace add ~/workspaces/antonio-skills
 claude plugin install antonio-skills@antonio
 ```
 
-Dopo una modifica alle skill: `claude plugin marketplace update antonio`, e aggiorna il plugin.
+Dopo una modifica alle skill alza `version` in `.claude-plugin/plugin.json`, poi `claude plugin marketplace update antonio` e `claude plugin update antonio-skills@antonio`: senza il cambio di versione resta installata quella vecchia.
 Quando il repo sarà su GitHub, `claude plugin marketplace add <owner>/antonio-skills` lo installa su qualunque macchina.
