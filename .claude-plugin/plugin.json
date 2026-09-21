@@ -2,7 +2,10 @@
   "name": "antoniovirgone-skills",
   "version": "0.2.0",
   "description": "Skill per impostare monorepo API + web + mobile, fare il primo grill di dominio e controllare quali issue sono pronte.",
-  "author": { "name": "Antonio Virgone" },
+  "author": {
+    "name": "Antonio Virgone"
+  },
+  "repository": "https://github.com/AntonioVirgone/antoniovirgone-skills",
   "skills": [
     "./skills/monorepo-api-web-mobile-setup",
     "./skills/monorepo-api-web-mobile-grill-iniziale",

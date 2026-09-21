@@ -10,10 +10,18 @@ Plugin di Claude Code con le mie skill. Si invocano con il prefisso del plugin:
 
 ## Installazione
 
+Da GitHub, su qualunque macchina:
+
+```bash
+claude plugin marketplace add AntonioVirgone/antoniovirgone-skills
+claude plugin install antoniovirgone-skills@antoniovirgone
+```
+
+Per lavorare sulle skill, dal clone locale (le modifiche si vedono senza passare da GitHub):
+
 ```bash
 claude plugin marketplace add ~/workspaces/antoniovirgone-skills
 claude plugin install antoniovirgone-skills@antoniovirgone
 ```
 
 Dopo una modifica alle skill alza `version` in `.claude-plugin/plugin.json`, poi `claude plugin marketplace update antoniovirgone` e `claude plugin update antoniovirgone-skills@antoniovirgone`: senza il cambio di versione resta installata quella vecchia.
-Quando il repo sarà su GitHub, `claude plugin marketplace add <owner>/antoniovirgone-skills` lo installa su qualunque macchina.
