@@ -31,7 +31,7 @@ Fatto quando: hai i tre elenchi e sai su quale commit di `main` stai ragionando.
 
 Per ogni issue aperta:
 
-1. Se il corpo ha una sezione `## Bloccata da` (formato in [Scrivere i blocchi](#scrivere-i-blocchi)), parti da quella e verifica che ogni riga sia ancora vera.
+1. Se il corpo ha una sezione `## Bloccata da` o `## Ordine consigliato` (formato in [Scrivere i blocchi](#scrivere-i-blocchi)), parti da quella e verifica che ogni riga sia ancora vera.
 2. Altrimenti ricavale dai criteri di accettazione: per ciascun criterio chiediti che cosa deve già esistere perché si possa soddisfare (un endpoint, una regola del motore, un ruolo, uno schema, una schermata) e quale issue — aperta o chiusa — lo fornisce.
 3. Controlla nel codice su `main` che quello che dai per fatto ci sia davvero: tipi senza logica, stub e TODO con il numero dell'issue contano come **non fatto**. Cerca anche il caso opposto: un'issue aperta il cui lavoro è già su `main`, da segnalare come «forse da chiudere».
 
@@ -83,8 +83,8 @@ Per ogni issue con blocchi duri, aggiungi o aggiorna in fondo al corpo, prima di
 - #22 — la scrittura deve finire nel registro delle attività
 ```
 
-Solo blocchi duri; l'ordine consigliato, se serve, va in una riga `Meglio dopo #N: <motivo>` sotto la lista. Quando un blocco si chiude, la riga si toglie; se la lista resta vuota, si toglie la sezione.
+Solo blocchi duri; l'ordine consigliato, se serve, va in una riga `Meglio dopo #N: <motivo>` sotto la lista. Un'issue senza blocchi duri ma con un ordine consigliato ha invece una sezione `## Ordine consigliato` con quella riga. Quando un blocco si chiude, la riga si toglie; se la lista resta vuota, si toglie la sezione.
 
-Modifica il corpo con `gh issue edit <n> --body-file <file>`, partendo dal corpo appena riletto con `gh issue view`, così non sovrascrivi modifiche fatte nel frattempo. Scrivi nella lingua delle issue.
+Le sezioni vanno prima della riga finale di contesto (`---` + rimandi), se c'è. Modifica il corpo con `gh issue edit <n> --body-file <file>`, partendo dal corpo appena riletto con `gh issue view`, così non sovrascrivi modifiche fatte nel frattempo. Scrivi nella lingua delle issue.
 
 Fatto quando: rileggendo ogni issue toccata, la sezione c'è e il resto del corpo è identico a prima.
