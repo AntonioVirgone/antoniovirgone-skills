@@ -17,14 +17,21 @@ Nessun risultato, o `graphify` non è nel `PATH`: niente grafo, salta il resto d
 
 ## Quanto è vecchio
 
-Il grafo fotografa i file della checkout com'erano quando è stato costruito, non `origin/main`. Prendi la data di `graph.json` ed elenca i file cambiati su `origin/main` da allora:
+Il grafo fotografa i file della checkout com'erano quando è stato costruito, non `origin/main`. Elenca i file cambiati su `origin/main` da allora:
 
 ```bash
 G=<cartella trovata sopra>
-git log origin/main --since="$(date -r "$G/graph.json" '+%Y-%m-%dT%H:%M:%S%z')" --name-only --format= | sort -u
+C=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("built_at_commit",""))' "$G/graph.json")
+if [ -n "$C" ] && git cat-file -e "$C^{commit}" 2>/dev/null; then
+  git diff --name-only "$C" origin/main
+else
+  git log origin/main --since="$(date -r "$G/graph.json" '+%Y-%m-%dT%H:%M:%S%z')" --name-only --format= | sort -u
+fi
 ```
 
-Per quei file il grafo non sa niente: cercali direttamente nel codice. Se l'elenco tocca buona parte del codice, il grafo vale poco: usalo appena o per niente, e proponi `/graphify . --update` nel resoconto.
+graphify scrive in `graph.json` il commit da cui l'ha costruito (`built_at_commit`, riportato anche in `GRAPH_REPORT.md`): il confronto con quel commit dà esattamente i file cambiati. I grafi costruiti con versioni più vecchie di graphify non lo scrivono, e allora si ripiega sulla data del file, che è meno precisa.
+
+Per quei file il grafo non sa niente: cercali direttamente nel codice. Se l'elenco tocca buona parte del codice, il grafo vale poco: usalo appena o per niente, e proponi nel resoconto di aggiornarlo nella checkout principale: `graphify update .` per il codice (senza token), `/graphify . --update` se sono cambiati anche i documenti.
 
 ## Usarlo
 

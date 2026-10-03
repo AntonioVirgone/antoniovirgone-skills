@@ -27,7 +27,7 @@ Fatto quando: sai quali etichette vogliono dire «da smistare», «per un agente
 
 - Grafo del codice: se il repo ne ha uno costruito con graphify (`graphify-out/`, anche solo nella checkout principale), segui [GRAFO.md](GRAFO.md) per trovarlo e vedere quanto è vecchio. Se non c'è, vai avanti senza.
 
-Fatto quando: hai i tre elenchi, sai su quale commit di `main` stai ragionando e se c'è un grafo, con la sua data.
+Fatto quando: hai i tre elenchi, sai su quale commit di `main` stai ragionando e se c'è un grafo, con il commit da cui è stato costruito (o la sua data).
 
 ### 3. Dipendenze di ogni issue
 
@@ -64,7 +64,7 @@ Se il repo ha un design versionato — una cartella di mockup (`docs/design/`, `
 
 In chat, in quest'ordine:
 
-1. il commit di `main` su cui hai ragionato e, se hai usato il grafo, la sua data e quanti file sono cambiati da allora;
+1. il commit di `main` su cui hai ragionato e, se hai usato il grafo, il commit da cui è stato costruito (o la sua data) e quanti file sono cambiati da allora;
 2. tabella delle **pronte** (numero, titolo, perché è libera, cosa sblocca), poi le pronte con condizione, per una persona, da smistare, in corso;
 3. le **bloccate** come catene per area, non come tabella lunga;
 4. le issue forse da chiudere e i blocchi dichiarati che non tornano più;
