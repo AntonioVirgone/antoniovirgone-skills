@@ -25,7 +25,9 @@ Fatto quando: sai quali etichette vogliono dire «da smistare», «per un agente
 - Issue chiuse, solo numero e titolo: sono i mattoni già posati.
 - PR aperte con le issue che chiudono: `gh pr list --state open --json number,title,headRefName,body`. Un'issue con una PR aperta è **in corso**.
 
-Fatto quando: hai i tre elenchi e sai su quale commit di `main` stai ragionando.
+- Grafo del codice: se il repo ne ha uno costruito con graphify (`graphify-out/`, anche solo nella checkout principale), segui [GRAFO.md](GRAFO.md) per trovarlo e vedere quanto è vecchio. Se non c'è, vai avanti senza.
+
+Fatto quando: hai i tre elenchi, sai su quale commit di `main` stai ragionando e se c'è un grafo, con la sua data.
 
 ### 3. Dipendenze di ogni issue
 
@@ -33,7 +35,7 @@ Per ogni issue aperta:
 
 1. Se il corpo ha una sezione `## Bloccata da` o `## Ordine consigliato` (formato in [Scrivere i blocchi](#scrivere-i-blocchi)), parti da quella e verifica che ogni riga sia ancora vera.
 2. Altrimenti ricavale dai criteri di accettazione: per ciascun criterio chiediti che cosa deve già esistere perché si possa soddisfare (un endpoint, una regola del motore, un ruolo, uno schema, una schermata) e quale issue — aperta o chiusa — lo fornisce.
-3. Controlla nel codice su `main` che quello che dai per fatto ci sia davvero: tipi senza logica, stub e TODO con il numero dell'issue contano come **non fatto**. Cerca anche il caso opposto: un'issue aperta il cui lavoro è già su `main`, da segnalare come «forse da chiudere».
+3. Controlla nel codice su `main` che quello che dai per fatto ci sia davvero — se c'è il grafo, usalo per sapere dove guardare ([GRAFO.md](GRAFO.md)), ma la verifica la fai sul codice: tipi senza logica, stub e TODO con il numero dell'issue contano come **non fatto**. Cerca anche il caso opposto: un'issue aperta il cui lavoro è già su `main`, da segnalare come «forse da chiudere».
 
 Distingui un blocco **duro** (senza l'altra issue un criterio non si può soddisfare) da un **ordine consigliato** (si può fare, ma dopo costa meno o evita un buco temporaneo, per esempio endpoint pubblici prima dell'autenticazione).
 
@@ -62,7 +64,7 @@ Se il repo ha un design versionato — una cartella di mockup (`docs/design/`, `
 
 In chat, in quest'ordine:
 
-1. il commit di `main` su cui hai ragionato;
+1. il commit di `main` su cui hai ragionato e, se hai usato il grafo, la sua data e quanti file sono cambiati da allora;
 2. tabella delle **pronte** (numero, titolo, perché è libera, cosa sblocca), poi le pronte con condizione, per una persona, da smistare, in corso;
 3. le **bloccate** come catene per area, non come tabella lunga;
 4. le issue forse da chiudere e i blocchi dichiarati che non tornano più;
