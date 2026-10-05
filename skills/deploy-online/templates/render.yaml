@@ -1,0 +1,48 @@
+# Il Blueprint di Render per l'API (docs/deploy.md). Render → New → Blueprint,
+# puntato su questo repo: crea il servizio `<progetto>-api` e chiede i valori
+# delle variabili con `sync: false`, che sono segreti o dipendono dall'ambiente.
+services:
+  - type: web
+    name: <progetto>-api
+    runtime: node
+    plan: free
+    region: frankfurt
+    # Si installa solo il workspace dell'API (con i pacchetti che usa), non
+    # Expo e Next.js: la build resta sotto i limiti del piano gratuito.
+    # `--include=dev` perché con `NODE_ENV=production` npm può saltare le
+    # devDependencies, e lì ci sono `nest` per la build e `prisma` per le
+    # migrazioni all'avvio.
+    buildCommand: npm ci --include=dev --workspace=@<progetto>/api --include-workspace-root && npx turbo run build --filter=@<progetto>/api
+    # Il piano gratuito non ha il «pre-deploy command»: le migrazioni girano
+    # all'avvio. `migrate deploy` applica solo quelle nuove, quindi ripeterlo è
+    # innocuo.
+    startCommand: npm run db:deploy --workspace=@<progetto>/api && node apps/<progetto>-api/dist/main.js
+    healthCheckPath: <percorso-health>
+    # Un push che non tocca l'API (l'app, la dashboard, i documenti) non la
+    # ricostruisce.
+    buildFilter:
+      paths:
+        - apps/<progetto>-api/**
+        - packages/**
+        - package.json
+        - package-lock.json
+        - turbo.json
+        - render.yaml
+    envVars:
+      - key: NODE_VERSION
+        value: "<versione-node>"
+      - key: NODE_ENV
+        value: production
+      # Dal «Session pooler» di Supabase (IPv4, porta 5432): la connessione
+      # diretta è solo IPv6, che Render non raggiunge.
+      - key: DATABASE_URL
+        sync: false
+      - key: FIREBASE_PROJECT_ID
+        value: <progetto-firebase>
+      # L'URL della web app su Vercel, senza `/` finale.
+      - key: CORS_ORIGINS
+        sync: false
+      # Il bilanciatore di Render sta davanti all'API: l'indirizzo di chi
+      # chiama è il primo passo di `X-Forwarded-For`.
+      - key: TRUST_PROXY
+        value: "1"
