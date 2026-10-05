@@ -26,7 +26,9 @@ Fatto quando: i due file e le due skill ci sono, e sei sul branch.
 
 Carica `grilling` e `domain-modeling`. Poi leggi `CLAUDE.md`, `docs/agents/`, i subagenti in `.claude/agents/`, il README e la richiesta dell'utente. Se esistono specifiche di progetti precedenti (i subagenti o le note in cima ai README le indicano), leggile per intero: seguono le regole di [Vecchie specifiche](#vecchie-specifiche).
 
-Apri il grill con un riepilogo di cinque righe: cosa hai capito del progetto, e quali specifiche hai trovato.
+Se il repo dichiara una wiki sui progetti precedenti (`docs/agents/wiki.md`, scritto al setup), trovala come dice quel file e parti dall'indice: le pagine di confronto tra i progetti e le mappe degli ADR valgono più dei singoli documenti, perché dicono che cosa è cambiato tra un progetto e l'altro e perché. Leggi solo le pagine che toccano la scaletta, e da lì le fonti che citano. Anche la wiki segue le regole di [Vecchie specifiche](#vecchie-specifiche). Se non c'è, vai avanti senza.
+
+Apri il grill con un riepilogo di cinque righe: cosa hai capito del progetto, e quali specifiche e pagine della wiki hai trovato.
 
 Fatto quando: l'utente ha confermato o corretto il riepilogo.
 
@@ -75,4 +77,5 @@ Documentazione estratta da progetti precedenti è una **guida**: esperienza da c
 - Il vocabolario si sceglie da capo: un nome vecchio confuso lascia il posto a uno migliore, e il vecchio finisce sotto _Avoid_.
 - Una scelta che sembra dettata dai limiti del vecchio progetto (stack diverso, scorciatoia, pezzo aggiunto dopo) va messa in discussione con l'utente.
 - Una cosa importante che i vecchi progetti avevano e che viene scartata va in un ADR, così chi legge le specifiche sa che è stata esclusa di proposito.
+- La wiki è una sintesi di sintesi: quando proponi una scelta che viene da lì, apri la fonte che la pagina cita e cita quella, non la pagina. Se la pagina dice che una cosa non torna tra due progetti (una pagina di incongruenze, un confronto), è un'occasione per decidere bene da subito: proponila come domanda del grill.
 - Se un subagente o un README tratta quelle specifiche come comportamento da riprodurre, riscrivi la riga: sono un riferimento storico, e dove divergono da `CONTEXT.md` o da un ADR prevalgono questi ultimi.

@@ -42,6 +42,7 @@ Leggi il repo (README, `package.json`, cartelle presenti, eventuale `docs/`) e l
 - app e percorsi (default: `apps/<progetto>-api`, `apps/<progetto>-web`, `apps/<progetto>-mobile`, `packages/shared-types` come `@<progetto>/types`). Se la web app è pensata per un ruolo preciso, proponi di chiamarla col nome del ruolo;
 - stack;
 - cartelle con specifiche di progetti precedenti, se ce ne sono;
+- una wiki sui progetti precedenti, se c'è: il repo GitHub e il nome della cartella del clone locale;
 - lingue (chat, prosa, identificatori, commit);
 - se creare le label su GitHub.
 
@@ -60,9 +61,11 @@ Il template di `CLAUDE.md` dichiara un solo contesto di dominio: è la scelta gi
 
 `CONTEXT.md` e `docs/adr/` restano da creare: nascono nel grill iniziale.
 
+Se l'utente ha indicato una wiki, copia anche `templates/docs/agents/wiki.md` → `docs/agents/wiki.md`, sostituendo `<owner>/<wiki>` e `<cartella-wiki>`, e aggiungi in fondo a `CLAUDE.md` la sezione `### Wiki` che trovi, commentata, nel template. Senza wiki, togli il commento dal `CLAUDE.md` copiato.
+
 Se ci sono specifiche di progetti precedenti, aggiungi in cima al README di ciascuna cartella una nota: sono un riferimento storico, e dove divergono da `CONTEXT.md` o da un ADR prevalgono questi ultimi.
 
-Fatto quando: `CLAUDE.md` e i quattro file di `docs/agents/` sono scritti e contengono il repo giusto.
+Fatto quando: `CLAUDE.md` e i quattro file di `docs/agents/` (cinque, con la wiki) sono scritti e contengono i repo giusti.
 
 ### 4. Subagenti
 

@@ -26,8 +26,9 @@ Fatto quando: sai quali etichette vogliono dire «da smistare», «per un agente
 - PR aperte con le issue che chiudono: `gh pr list --state open --json number,title,headRefName,body`. Un'issue con una PR aperta è **in corso**.
 
 - Grafo del codice: se il repo ne ha uno costruito con graphify (`graphify-out/`, anche solo nella checkout principale), segui [GRAFO.md](GRAFO.md) per trovarlo e vedere quanto è vecchio. Se non c'è, vai avanti senza.
+- Wiki del progetto: se il repo dichiara una wiki (`docs/agents/wiki.md`), segui [WIKI.md](WIKI.md) per trovarla e vedere quanto è indietro. Se non c'è, vai avanti senza dirlo.
 
-Fatto quando: hai i tre elenchi, sai su quale commit di `main` stai ragionando e se c'è un grafo, con il commit da cui è stato costruito (o la sua data).
+Fatto quando: hai i tre elenchi, sai su quale commit di `main` stai ragionando, se c'è un grafo, con il commit da cui è stato costruito (o la sua data), e se c'è una wiki, con il punto a cui è arrivato l'ultimo ingest.
 
 ### 3. Dipendenze di ogni issue
 
@@ -35,7 +36,9 @@ Per ogni issue aperta:
 
 1. Se il corpo ha una sezione `## Bloccata da` o `## Ordine consigliato` (formato in [Scrivere i blocchi](#scrivere-i-blocchi)), parti da quella e verifica che ogni riga sia ancora vera.
 2. Altrimenti ricavale dai criteri di accettazione: per ciascun criterio chiediti che cosa deve già esistere perché si possa soddisfare (un endpoint, una regola del motore, un ruolo, uno schema, una schermata) e quale issue — aperta o chiusa — lo fornisce.
-3. Controlla nel codice su `main` che quello che dai per fatto ci sia davvero — se c'è il grafo, usalo per sapere dove guardare ([GRAFO.md](GRAFO.md)), ma la verifica la fai sul codice: tipi senza logica, stub e TODO con il numero dell'issue contano come **non fatto**. Cerca anche il caso opposto: un'issue aperta il cui lavoro è già su `main`, da segnalare come «forse da chiudere».
+3. Controlla nel codice su `main` che quello che dai per fatto ci sia davvero — se ci sono il grafo o la wiki, usali per sapere dove guardare ([GRAFO.md](GRAFO.md), [WIKI.md](WIKI.md)), ma la verifica la fai sul codice: tipi senza logica, stub e TODO con il numero dell'issue contano come **non fatto**. Cerca anche il caso opposto: un'issue aperta il cui lavoro è già su `main`, da segnalare come «forse da chiudere».
+
+4. Se c'è la wiki, controlla con la sua mappa degli ADR che i criteri non si appoggino a un ADR superato, e con le incongruenze aperte che l'issue non dipenda da una contraddizione ancora da decidere ([WIKI.md](WIKI.md)). Verifica nell'ADR in vigore prima di segnalarlo. È una **nota** per il resoconto, non un blocco e non un motivo per cambiare categoria.
 
 Distingui un blocco **duro** (senza l'altra issue un criterio non si può soddisfare) da un **ordine consigliato** (si può fare, ma dopo costa meno o evita un buco temporaneo, per esempio endpoint pubblici prima dell'autenticazione).
 
@@ -64,10 +67,10 @@ Se il repo ha un design versionato — una cartella di mockup (`docs/design/`, `
 
 In chat, in quest'ordine:
 
-1. il commit di `main` su cui hai ragionato e, se hai usato il grafo, il commit da cui è stato costruito (o la sua data) e quanti file sono cambiati da allora;
-2. tabella delle **pronte** (numero, titolo, perché è libera, cosa sblocca), poi le pronte con condizione, per una persona, da smistare, in corso;
+1. il commit di `main` su cui hai ragionato; se hai usato il grafo, il commit da cui è stato costruito (o la sua data) e quanti file sono cambiati da allora; se hai usato la wiki, fin dove arriva l'ultimo ingest e quali pagine che ti servivano erano indietro;
+2. tabella delle **pronte** (numero, titolo, perché è libera, cosa sblocca, e le note del passo 3.4 se ce ne sono), poi le pronte con condizione, per una persona, da smistare, in corso;
 3. le **bloccate** come catene per area, non come tabella lunga;
-4. le issue forse da chiudere e i blocchi dichiarati che non tornano più;
+4. le issue forse da chiudere, i blocchi dichiarati che non tornano più e i criteri che si appoggiano a un ADR superato;
 5. l'esito del design, se c'è.
 
 Chiudi proponendo le scritture del passo 7 che servono, e chiedi quali fare. Non scrivere niente su GitHub prima della risposta.
@@ -90,3 +93,9 @@ Solo blocchi duri; l'ordine consigliato, se serve, va in una riga `Meglio dopo #
 Le sezioni vanno prima della riga finale di contesto (`---` + rimandi), se c'è. Modifica il corpo con `gh issue edit <n> --body-file <file>`, partendo dal corpo appena riletto con `gh issue view`, così non sovrascrivi modifiche fatte nel frattempo. Scrivi nella lingua delle issue.
 
 Fatto quando: rileggendo ogni issue toccata, la sezione c'è e il resto del corpo è identico a prima.
+
+#### Rimettere in triage
+
+Per un'issue con un criterio che si appoggia a un ADR superato o a un'incongruenza aperta, e solo se l'utente lo chiede: aggiungi l'etichetta «da smistare» (`gh issue edit <n> --add-label …`), togli quella «per un agente», e lascia un commento che dice quale criterio, quale ADR lo supera e quale decisione serve. Cita l'ADR o il file, non la wiki.
+
+Fatto quando: l'issue ha le etichette nuove e il commento.
