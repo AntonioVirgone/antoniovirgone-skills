@@ -27,6 +27,8 @@ L'app usa moduli nativi (login Apple e Google, notifiche, aptica…), quindi ser
 
 - Se c'è già una build di debug e i moduli nativi non sono cambiati da allora (stesse dipendenze `expo-*` e native in `package.json`, stessi config plugin), si **reinstalla quella**: su iOS si trova in `~/Library/Developer/Xcode/DerivedData/<Nome>-*/Build/Products/Debug-iphonesimulator/<Nome>.app`.
 - Altrimenti si costruisce: `npx expo run:ios --device <udid>` o `npx expo run:android --device <nome>`. La prima volta fa il prebuild e dura minuti: lanciala in background.
+- Su iOS CocoaPods si ferma con `Unicode Normalization not appropriate for ASCII-8BIT` se il terminale non è in UTF-8: `LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8` davanti a `pod install` ed `expo run:ios`.
+- `expo run:ios` resta acceso con Metro e non finisce da solo: aspetta nel suo log `Build Succeeded`, poi `iOS Bundled`, oppure un errore.
 
 Fatto quando: la build è installata sul dispositivo.
 
@@ -46,7 +48,10 @@ Fatto quando: la build è installata sul dispositivo.
 
 **iPhone collegato**
 
-- Con un account Apple gratuito o del team: `npx expo run:ios --device` firma con il team scelto in Xcode. La prima volta l'utente deve fidarsi del certificato sviluppatore sul telefono (Impostazioni → Generali → VPN e gestione dispositivi) e attivare la Modalità sviluppatore.
+- I telefoni associati, anche via Wi-Fi: `xcrun devicectl list devices` (riga `physical`, stato `available (paired)` o `connected`). L'UDID va a `npx expo run:ios --device <udid>`.
+- La firma: il progetto generato da un prebuild nuovo (in un worktree, o dopo `--clean`) non ha `DEVELOPMENT_TEAM`, e `expo run:ios` lo chiede in modo interattivo. Il team stabile va in `ios.appleTeamId` di `app.json`; se manca, prendilo dal `project.pbxproj` di un'altra checkout e scrivilo nel progetto generato prima della build. La prima volta l'utente deve fidarsi del certificato sviluppatore sul telefono (Impostazioni → Generali → VPN e gestione dispositivi) e attivare la Modalità sviluppatore.
+- Per l'API, la via più semplice è quella di produzione, se c'è: niente IP della rete locale.
+- Che l'app giri: `xcrun devicectl device info processes --device <udid>` la elenca, e nel log di Metro c'è `iOS Bundled`. Una foto dello schermo da qui non si fa: la chiedi all'utente.
 - Senza Xcode sul telefono: una build `preview` di EAS, dopo aver registrato il dispositivo con `eas device:create` (vedi `app-di-test`).
 
 **Telefono Android collegato**
