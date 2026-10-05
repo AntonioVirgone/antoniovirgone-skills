@@ -1,6 +1,6 @@
 {
   "name": "antoniovirgone-skills",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Skill per impostare monorepo API + web + mobile, fare il primo grill di dominio, controllare quali issue sono pronte, mettere online API e web, configurare Firebase, portare l'app sugli store di test e avviarla in locale.",
   "author": {
     "name": "Antonio Virgone"

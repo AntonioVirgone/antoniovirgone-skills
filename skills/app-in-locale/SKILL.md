@@ -45,6 +45,9 @@ Fatto quando: la build è installata sul dispositivo.
 - `adb` e `emulator` stanno in `~/Library/Android/sdk/platform-tools/` e `~/Library/Android/sdk/emulator/`, spesso fuori dal `PATH`. Gli AVD: `emulator -list-avds`; avvio: `emulator -avd <nome>` in background, poi `adb wait-for-device`.
 - `adb reverse tcp:8081 tcp:8081` per Metro, e lo stesso per la porta dell'API locale.
 - `adb install -r <apk>`, `adb shell monkey -p <pacchetto> 1` per aprirla, `adb exec-out screencap -p > <file>.png` per la foto.
+- Gradle vuole `JAVA_HOME` e `ANDROID_HOME`: se non ci sono, `JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"` e `ANDROID_HOME=~/Library/Android/sdk`, con `platform-tools` nel `PATH`.
+- `expo run:android --device` vuole il nome che Expo dà al dispositivo: il modello con i trattini bassi (`Pixel_7`), o l'AVD per un emulatore; il seriale di `adb` e il modello con lo spazio non li trova. Con un solo dispositivo acceso si omette `--device`.
+- Con Metro già acceso (anche per iOS, dallo stesso progetto), `--no-bundler`: la build lo riusa. A differenza di `expo run:ios`, `expo run:android --no-bundler` finisce dopo aver aperto l'app.
 
 **iPhone collegato**
 
@@ -56,7 +59,9 @@ Fatto quando: la build è installata sul dispositivo.
 
 **Telefono Android collegato**
 
-- Debug USB attivo, il telefono che compare in `adb devices`. Poi come l'emulatore: `adb reverse` e `npx expo run:android --device`, oppure l'APK di una build `preview`.
+- Debug USB attivo, il telefono che compare in `adb devices` come `device` (non `unauthorized`). Poi come l'emulatore, oppure l'APK di una build `preview`.
+- **Un'app già installata** si sovrascrive con `adb install -r`, che tiene i dati. Il flag `DEBUGGABLE` in `adb shell dumpsys package <pacchetto>` non dice niente sulla firma: una build release fatta in locale è firmata con la chiave di debug come quella di debug. Solo se Android rifiuta con `INSTALL_FAILED_UPDATE_INCOMPATIBLE` (firma diversa: APK `preview` di EAS, build di Play) l'app va disinstallata, e prima si chiede all'utente: la disinstallazione cancella i dati dell'app.
+- **Backup automatico**: con `android:allowBackup="true"` (il default di Expo) Android, all'installazione, ricopia dal backup di Google i dati dell'ultima versione con la stessa firma (`restoreAtInstall` nel `logcat`). Dopo una disinstallazione l'app può quindi ripartire con consenso, sessione e giocatore di prima. Per vedere davvero il primo avvio: `adb shell pm clear <pacchetto>`, che cancella i dati senza ripristino.
 
 Fatto quando: l'app è aperta sul dispositivo.
 
