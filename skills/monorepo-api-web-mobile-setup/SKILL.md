@@ -61,7 +61,7 @@ Il template di `CLAUDE.md` dichiara un solo contesto di dominio: è la scelta gi
 
 `CONTEXT.md` e `docs/adr/` restano da creare: nascono nel grill iniziale.
 
-Se l'utente ha indicato una wiki, copia anche `templates/docs/agents/wiki.md` → `docs/agents/wiki.md`, sostituendo `<owner>/<wiki>` e `<cartella-wiki>`, e aggiungi in fondo a `CLAUDE.md` la sezione `### Wiki` che trovi, commentata, nel template. Senza wiki, togli il commento dal `CLAUDE.md` copiato.
+Se l'utente ha indicato una wiki, copia anche `templates/docs/agents/wiki.md` → `docs/agents/wiki.md`, sostituendo `<owner>/<wiki>` e `<cartella-wiki>`, e aggiungi in fondo a `CLAUDE.md` la sezione `### Wiki` che trovi, commentata, nel template. Senza wiki, cancella il blocco commentato dal `CLAUDE.md` copiato.
 
 Se ci sono specifiche di progetti precedenti, aggiungi in cima al README di ciascuna cartella una nota: sono un riferimento storico, e dove divergono da `CONTEXT.md` o da un ADR prevalgono questi ultimi.
 
