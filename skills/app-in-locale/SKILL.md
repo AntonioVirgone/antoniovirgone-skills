@@ -60,7 +60,8 @@ Fatto quando: la build è installata sul dispositivo.
 **Telefono Android collegato**
 
 - Debug USB attivo, il telefono che compare in `adb devices` come `device` (non `unauthorized`). Poi come l'emulatore, oppure l'APK di una build `preview`.
-- **Un'app già installata con un'altra firma** (APK `preview` di EAS, build di Play) blocca l'installazione della build di debug. Si riconosce da `adb shell dumpsys package <pacchetto>`: senza `DEBUGGABLE` nei flag non è una build di debug. Va disinstallata, e la disinstallazione cancella i dati dell'app, compreso un account anonimo che non si recupera: chiedi all'utente prima di `adb uninstall`.
+- **Un'app già installata** si sovrascrive con `adb install -r`, che tiene i dati. Il flag `DEBUGGABLE` in `adb shell dumpsys package <pacchetto>` non dice niente sulla firma: una build release fatta in locale è firmata con la chiave di debug come quella di debug. Solo se Android rifiuta con `INSTALL_FAILED_UPDATE_INCOMPATIBLE` (firma diversa: APK `preview` di EAS, build di Play) l'app va disinstallata, e prima si chiede all'utente: la disinstallazione cancella i dati dell'app.
+- **Backup automatico**: con `android:allowBackup="true"` (il default di Expo) Android, all'installazione, ricopia dal backup di Google i dati dell'ultima versione con la stessa firma (`restoreAtInstall` nel `logcat`). Dopo una disinstallazione l'app può quindi ripartire con consenso, sessione e giocatore di prima. Per vedere davvero il primo avvio: `adb shell pm clear <pacchetto>`, che cancella i dati senza ripristino.
 
 Fatto quando: l'app è aperta sul dispositivo.
 
