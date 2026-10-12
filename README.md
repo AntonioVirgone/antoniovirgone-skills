@@ -11,6 +11,7 @@ Plugin di Claude Code con le mie skill. Si invocano con il prefisso del plugin:
 | `/antoniovirgone-skills:deploy-online` | Database su Supabase, API su Render, web app su Vercel, collegati tra loro. |
 | `/antoniovirgone-skills:app-di-test` | EAS, push, TestFlight e test interno di Google Play. |
 | `/antoniovirgone-skills:app-in-locale` | L'app su simulatore, emulatore o telefono collegato, con Metro e l'API locale. |
+| `/antoniovirgone-skills:unity-setup-claude-blender` | Un progetto Unity collegato a Claude Code (Unity MCP) e a Blender (Blender MCP), con Git LFS e un CLAUDE.md con le regole per l'Editor. |
 
 Le quattro skill sui servizi esterni seguono le regole comuni di [`skills/servizi-esterni.md`](skills/servizi-esterni.md): l'agente usa le CLI dove ci sono, e per i passi da console (login, termini, chiavi da scaricare) scrive un wizard che lanci tu. L'ordine è `firebase-progetto`, `deploy-online`, `app-di-test`; `app-in-locale` serve da subito.
 
