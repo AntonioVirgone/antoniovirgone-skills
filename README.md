@@ -6,7 +6,7 @@ Plugin di Claude Code con le mie skill. Si invocano con il prefisso del plugin:
 | --- | --- |
 | `/antoniovirgone-skills:monorepo-api-web-mobile-setup` | Imposta un monorepo API + web + mobile con il metodo di lavoro per agenti. |
 | `/antoniovirgone-skills:monorepo-api-web-mobile-grill-iniziale` | Primo grill di dominio: `CONTEXT.md`, ADR, elenco di issue. |
-| `/antoniovirgone-skills:controllo-issue` | Quali issue si possono implementare adesso, quali sono bloccate, e se il design chiede modifiche. |
+| `/antoniovirgone-skills:controllo-issue` | Quali issue si possono implementare adesso, quali sono bloccate (anche da una milestone che aspetta un'altra), e se il design chiede modifiche. |
 | `/antoniovirgone-skills:firebase-progetto` | Il progetto Firebase: app, provider di accesso, Sign in with Apple, client OAuth, account di servizio. |
 | `/antoniovirgone-skills:deploy-online` | Database su Supabase, API su Render, web app su Vercel, collegati tra loro. |
 | `/antoniovirgone-skills:app-di-test` | EAS, push, TestFlight e test interno di Google Play. |
