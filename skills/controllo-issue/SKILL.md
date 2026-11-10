@@ -1,6 +1,6 @@
 ---
 name: controllo-issue
-description: Controlla le issue aperte di un repo GitHub contro il codice su main e dice quali si possono implementare adesso, quali sono bloccate e da cosa, quali aspettano una decisione. Se il repo ha un design versionato, verifica anche se l'ultima versione chiede modifiche.
+description: Controlla le issue aperte di un repo GitHub contro il codice su main e dice quali si possono implementare adesso, quali sono bloccate e da cosa, quali aspettano una decisione. Se il repo ordina le milestone, parte da quelle di turno. Se il repo ha un design versionato, verifica anche se l'ultima versione chiede modifiche.
 disable-model-invocation: true
 ---
 
@@ -21,14 +21,15 @@ Fatto quando: sai quali etichette vogliono dire «da smistare», «per un agente
 ### 2. Stato di partenza
 
 - `git fetch origin` e lavora su `origin/main` (o il branch principale): leggi i file con `git show origin/main:<percorso>` o in un checkout staccato, mai sul branch locale, che può essere indietro.
-- Issue aperte con corpo ed etichette: `gh issue list --state open --limit 200 --json number,title,labels,body`.
+- Issue aperte con corpo ed etichette: `gh issue list --state open --limit 200 --json number,title,labels,body,milestone`.
 - Issue chiuse, solo numero e titolo: sono i mattoni già posati.
 - PR aperte con le issue che chiudono: `gh pr list --state open --json number,title,headRefName,body`. Un'issue con una PR aperta è **in corso**.
+- Milestone: segui [MILESTONE.md](MILESTONE.md) per sapere se il repo dichiara l'ordine delle milestone e qual è lo stato di ognuna (di turno, in attesa, parallela, da chiudere).
 
 - Grafo del codice: se il repo ne ha uno costruito con graphify (`graphify-out/`, anche solo nella checkout principale), segui [GRAFO.md](GRAFO.md) per trovarlo e vedere quanto è vecchio. Se non c'è, vai avanti senza.
 - Wiki del progetto: se il repo dichiara una wiki (`docs/agents/wiki.md`), segui [WIKI.md](WIKI.md) per trovarla e vedere quanto è indietro. Se non c'è, vai avanti senza dirlo.
 
-Fatto quando: hai i tre elenchi, sai su quale commit di `main` stai ragionando, se c'è un grafo, con il commit da cui è stato costruito (o la sua data), e se c'è una wiki, con il punto a cui è arrivato l'ultimo ingest.
+Fatto quando: hai i tre elenchi e lo stato di ogni milestone aperta, sai su quale commit di `main` stai ragionando, se c'è un grafo, con il commit da cui è stato costruito (o la sua data), e se c'è una wiki, con il punto a cui è arrivato l'ultimo ingest.
 
 ### 3. Dipendenze di ogni issue
 
@@ -39,6 +40,7 @@ Per ogni issue aperta:
 3. Controlla nel codice su `main` che quello che dai per fatto ci sia davvero — se ci sono il grafo o la wiki, usali per sapere dove guardare ([GRAFO.md](GRAFO.md), [WIKI.md](WIKI.md)), ma la verifica la fai sul codice: tipi senza logica, stub e TODO con il numero dell'issue contano come **non fatto**. Cerca anche il caso opposto: un'issue aperta il cui lavoro è già su `main`, da segnalare come «forse da chiudere».
 
 4. Se c'è la wiki, controlla con la sua mappa degli ADR che i criteri non si appoggino a un ADR superato, e con le incongruenze aperte che l'issue non dipenda da una contraddizione ancora da decidere ([WIKI.md](WIKI.md)). Verifica nell'ADR in vigore prima di segnalarlo. È una **nota** per il resoconto, non un blocco e non un motivo per cambiare categoria.
+5. Se l'issue sta in una milestone **in attesa**, aggiungi il blocco di milestone come dice [MILESTONE.md](MILESTONE.md#come-pesa-sulle-issue).
 
 Distingui un blocco **duro** (senza l'altra issue un criterio non si può soddisfare) da un **ordine consigliato** (si può fare, ma dopo costa meno o evita un buco temporaneo, per esempio endpoint pubblici prima dell'autenticazione).
 
@@ -53,7 +55,7 @@ Ogni issue va in una sola categoria:
 - **Per una persona** — pronta, ma etichettata per un umano (decisioni di gusto, contenuti, UI da valutare a occhio).
 - **Da smistare** — `needs-triage` / `needs-info`: di' quale decisione manca e a chi spetta.
 - **In corso** — c'è una PR aperta.
-- **Bloccata** — almeno un blocco duro aperto: elenca i numeri.
+- **Bloccata** — almeno un blocco duro aperto, di un'issue o di una milestone: elenca i numeri o la milestone.
 
 Poi ricava le **catene**: l'ordine in cui le bloccate si sbloccano (`#10 → #14 → #15`), per area. Segnala l'issue che sblocca più lavoro.
 
@@ -67,10 +69,10 @@ Se il repo ha un design versionato — una cartella di mockup (`docs/design/`, `
 
 In chat, in quest'ordine:
 
-1. il commit di `main` su cui hai ragionato; se hai usato il grafo, il commit da cui è stato costruito (o la sua data) e quanti file sono cambiati da allora; se hai usato la wiki, fin dove arriva l'ultimo ingest e quali pagine che ti servivano erano indietro;
-2. tabella delle **pronte** (numero, titolo, perché è libera, cosa sblocca, e le note del passo 3.4 se ce ne sono), poi le pronte con condizione, per una persona, da smistare, in corso;
+1. il commit di `main` su cui hai ragionato e le milestone aperte con il loro stato, nell'ordine del documento se c'è; se hai usato il grafo, il commit da cui è stato costruito (o la sua data) e quanti file sono cambiati da allora; se hai usato la wiki, fin dove arriva l'ultimo ingest e quali pagine che ti servivano erano indietro;
+2. tabella delle **pronte** (numero, titolo, perché è libera, cosa sblocca, e le note del passo 3.4 se ce ne sono), raggruppate per milestone con quelle di turno prima, poi le pronte con condizione, per una persona, da smistare, in corso;
 3. le **bloccate** come catene per area, non come tabella lunga;
-4. le issue forse da chiudere, i blocchi dichiarati che non tornano più e i criteri che si appoggiano a un ADR superato;
+4. le issue forse da chiudere, i blocchi dichiarati che non tornano più, i criteri che si appoggiano a un ADR superato, le milestone da chiudere e le incongruenze delle milestone (documento indietro, issue senza milestone o col titolo sbagliato);
 5. l'esito del design, se c'è.
 
 Chiudi proponendo le scritture del passo 7 che servono, e chiedi quali fare. Non scrivere niente su GitHub prima della risposta.
