@@ -1,7 +1,7 @@
 {
   "name": "antoniovirgone-skills",
-  "version": "0.7.0",
-  "description": "Skill per impostare monorepo API + web + mobile, fare il primo grill di dominio, controllare quali issue sono pronte, mettere online API e web, configurare Firebase, portare l'app sugli store di test e avviarla in locale, e collegare un progetto Unity a Claude Code e Blender.",
+  "version": "0.8.0",
+  "description": "Il metodo di lavoro comune a tutti i progetti (milestone, issue, branch, commit, rilasci, con una parte Unity), le skill per aprire issue, controllarne la prontezza e chiudere le milestone, e le skill per impostare monorepo API + web + mobile, mettere online API e web, configurare Firebase, portare l'app sugli store di test e avviarla in locale, e collegare un progetto Unity a Claude Code e Blender.",
   "author": {
     "name": "Antonio Virgone"
   },
@@ -10,7 +10,10 @@
   "skills": [
     "./skills/monorepo-api-web-mobile-setup",
     "./skills/monorepo-api-web-mobile-grill-iniziale",
+    "./skills/metodo-di-lavoro",
+    "./skills/nuova-issue",
     "./skills/controllo-issue",
+    "./skills/chiusura-milestone",
     "./skills/firebase-progetto",
     "./skills/deploy-online",
     "./skills/app-di-test",

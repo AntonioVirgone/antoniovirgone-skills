@@ -1,12 +1,14 @@
 {
   "name": "antoniovirgone",
-  "owner": { "name": "Antonio Virgone" },
+  "owner": {
+    "name": "Antonio Virgone"
+  },
   "description": "Le skill di Antonio per lavorare con gli agenti.",
   "plugins": [
     {
       "name": "antoniovirgone-skills",
       "source": "./",
-      "description": "Skill per impostare monorepo API + web + mobile, fare il primo grill di dominio, controllare quali issue sono pronte, mettere online API e web, configurare Firebase, portare l'app sugli store di test e avviarla in locale, e collegare un progetto Unity a Claude Code e Blender."
+      "description": "Il metodo di lavoro comune a tutti i progetti (milestone, issue, branch, commit, rilasci, con una parte Unity), le skill per aprire issue, controllarne la prontezza e chiudere le milestone, e le skill per impostare monorepo API + web + mobile, mettere online API e web, configurare Firebase, portare l'app sugli store di test e avviarla in locale, e collegare un progetto Unity a Claude Code e Blender."
     }
   ]
 }

@@ -132,3 +132,5 @@ Fatto quando: la console dell'Editor ha zero errori.
 Chiudi con una tabella: per ogni pezzo (Git e LFS, `.gitignore`, `.mcp.json`, pacchetto, bridge, unity-mcp utente, connessione approvata, addon Blender, Input System, CLAUDE.md) lo stato e come l'hai verificato. Elenca a parte quello che resta da fare all'utente.
 
 Proponi un commit: i file nuovi (`.gitattributes`, `.gitignore`, `.mcp.json`, CLAUDE.md) e il manifest; se il repo l'hai appena creato, il primo commit comprende tutto il progetto (`Assets/`, `Packages/`, `ProjectSettings/`), che il `.gitignore` già filtra. Committa solo se l'utente dice di sì, e non fare push senza che lo chieda.
+
+Per milestone, issue e rilasci il progetto segue poi la skill `metodo-di-lavoro`, compresa la sua parte Unity (`tools/unity-check.sh`, `tools/pesante.sh` e l'hook dei processi pesanti): proponila come passo successivo.
