@@ -1,6 +1,6 @@
 {
   "name": "antoniovirgone-skills",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Il metodo di lavoro comune a tutti i progetti (milestone, issue, branch, commit, rilasci, con una parte Unity), le skill per aprire issue, controllarne la prontezza, chiudere le milestone e pubblicare su itch.io, e le skill per impostare monorepo API + web + mobile, mettere online API e web, configurare Firebase, portare l'app sugli store di test e avviarla in locale, e collegare un progetto Unity a Claude Code e Blender.",
   "author": {
     "name": "Antonio Virgone"
