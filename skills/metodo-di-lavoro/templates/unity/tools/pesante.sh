@@ -1,7 +1,8 @@
 #!/bin/bash
 # L'unica strada per lanciare un processo pesante: Unity in batchmode (test, compilazione, build).
-# Il Mac è uno solo e lo usano più sessioni e più progetti (anche age-of-dinos, da cui viene questo
-# script), quindi i posti sono contati per tutto il Mac, non per sessione: al massimo PESANTI_MAX processi
+# Il Mac è uno solo e lo usano più sessioni e più progetti (age-of-dinos, da cui viene questo script, e
+# ogni progetto che l'ha copiato dal metodo, come jelly-mix-unity e grim-descent), quindi i posti sono
+# contati per tutto il Mac, non per sessione: al massimo PESANTI_MAX processi
 # pesanti insieme (6), contando anche quelli lanciati fuori da qui, compresi i player e il Blender headless
 # di age-of-dinos. Un processo aspetta il suo posto, e se il carico è già alto aspetta che scenda. Gira con
 # nice -n 10 e viene ucciso dopo PESANTE_TIMEOUT secondi (2 ore).
@@ -18,8 +19,8 @@ TIMEOUT=${PESANTE_TIMEOUT:-7200}
 WAIT_LIMIT=${PESANTE_ATTESA:-3600}
 CPUS=$(sysctl -n hw.ncpu 2>/dev/null || echo 8)
 LOAD_LIMIT=$(( CPUS * 2 ))
-# Lo stesso lucchetto del pesante.sh di age-of-dinos: due lanci insieme, uno per progetto, non prendono
-# lo stesso posto.
+# Lo stesso lucchetto in tutti i progetti (il nome viene da age-of-dinos): due lanci insieme, uno per
+# progetto, non prendono lo stesso posto. Non va rinominato, o il tetto non sarebbe più comune.
 DIR=${TMPDIR:-/tmp}/age-of-dinos-pesanti
 LOCK=$DIR/lock
 
