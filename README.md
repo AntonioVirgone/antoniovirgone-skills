@@ -10,6 +10,7 @@ Plugin di Claude Code con le mie skill. Si invocano con il prefisso del plugin:
 | `/antoniovirgone-skills:nuova-issue` | Apre un'issue col formato del metodo: milestone, prefisso `M<n> ·`, etichette, corpo e blocchi. |
 | `/antoniovirgone-skills:controllo-issue` | Quali issue si possono implementare adesso, quali sono bloccate (anche da una milestone che aspetta un'altra), e se il design chiede modifiche. |
 | `/antoniovirgone-skills:chiusura-milestone` | Chiude una milestone col suo rilascio: versione, build, prova, caricamento, tag, devlog. |
+| `/antoniovirgone-skills:pubblicazione-itch-io` | Pubblica su itch.io quando l'utente lo chiede: butler, prova dalla pagina, tag e release GitHub, devlog e descrizione da Claude in Chrome. |
 | `/antoniovirgone-skills:firebase-progetto` | Il progetto Firebase: app, provider di accesso, Sign in with Apple, client OAuth, account di servizio. |
 | `/antoniovirgone-skills:deploy-online` | Database su Supabase, API su Render, web app su Vercel, collegati tra loro. |
 | `/antoniovirgone-skills:app-di-test` | EAS, push, TestFlight e test interno di Google Play. |

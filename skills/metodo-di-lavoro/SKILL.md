@@ -23,7 +23,7 @@ Issue, PR, commit, documentazione e commenti nel codice in **italiano**. Identif
 - **`docs/agents/`**: le convenzioni del progetto per gli agenti, dai template in [templates/docs/agents/](templates/docs/agents/):
   - `triage-labels.md`: il repo GitHub e le etichette, con le aree del progetto;
   - `milestone.md`: l'ordine delle milestone, le dipendenze, i percorsi paralleli e i rilasci;
-  - `rilasci.md`, quando il progetto rilascia: i comandi di build, prova e caricamento.
+  - `rilasci.md`, quando il progetto rilascia: i comandi di build, prova e caricamento, e per itch.io i dati che chiede la skill `pubblicazione-itch-io` (progetto butler, id della dashboard, note del rilascio e del devlog).
 
 Niente piano separato per milestone: il grill di una milestone produce le sue issue, e l'ordine sta nelle loro sezioni `## Bloccata da` e `## Ordine consigliato`.
 
@@ -99,7 +99,8 @@ La PR dice cosa è stato verificato e come, e cosa no.
 - Versioni `0.MINOR.PATCH` finché l'utente non decide la 1.0.0. Il progetto può fissare una numerazione sua per i primi rilasci (per esempio rilasci privati `0.0.x` prima della prima demo pubblica): la scrive in `docs/agents/milestone.md`.
 - Una milestone che rilascia fa salire la MINOR e azzera la PATCH; un rilascio di sole correzioni fa salire la PATCH. Le milestone senza rilascio escono col rilascio successivo.
 - Una milestone che rilascia ha un'issue `M<n> · Rilascio <versione>`, bloccata da tutte le altre issue della milestone: è l'ultima a chiudersi. Un problema trovato provando la build del rilascio diventa un'issue della stessa milestone e blocca il rilascio.
-- Il rilascio si fa con la skill `chiusura-milestone`: commit «Versione X.Y.Z (M<n>)», build da `main` aggiornato, prova senza errori, caricamento (con l'ok dell'utente), tag `vX.Y.Z` sul commit della versione, chiusura della milestone e aggiornamento di `docs/agents/milestone.md`.
+- Il rilascio si fa con la skill `chiusura-milestone`: commit «Versione X.Y.Z (M<n>)», build da `main` aggiornato, prova senza errori, caricamento quando l'utente lo chiede, tag `vX.Y.Z` sul commit della versione, chiusura della milestone e aggiornamento di `docs/agents/milestone.md`.
+- Su itch.io la pubblicazione, dal caricamento al devlog, la fa l'agente con la skill `pubblicazione-itch-io`; all'utente restano il via e le prove che vogliono il suo dispositivo.
 
 ## Applicare il metodo a un progetto
 

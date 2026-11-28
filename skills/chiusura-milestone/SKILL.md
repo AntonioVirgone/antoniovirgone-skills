@@ -1,6 +1,6 @@
 ---
 name: chiusura-milestone
-description: Chiude una milestone col suo rilascio — versione nuova, build da main, prova, caricamento, tag, devlog e aggiornamento di docs/agents/milestone.md — oppure fa un rilascio di sole correzioni. Vale per ogni progetto che segue il metodo di lavoro; i comandi di build e caricamento li dà il progetto.
+description: Chiude una milestone col suo rilascio — versione nuova, build da main, prova, caricamento (su itch.io con la skill pubblicazione-itch-io), tag, devlog e aggiornamento di docs/agents/milestone.md — oppure fa un rilascio di sole correzioni. Vale per ogni progetto che segue il metodo di lavoro; i comandi di build e caricamento li dà il progetto.
 disable-model-invocation: true
 argument-hint: "M<n> | patch"
 ---
@@ -47,18 +47,24 @@ Fatto quando: ogni punto è provato, o saltato con la decisione dell'utente scri
 
 ## 5. Caricamento e tag
 
-Chiedi l'ok all'utente: caricare cambia quello che vede chi gioca. Poi carica coi comandi di `docs/agents/rilasci.md` (per itch.io, `butler push ... --userversion X.Y.Z` e il controllo con `butler status`); se il caricamento vuole l'account dell'utente, lo lancia lui e tu gli dai il comando. Poi:
+Si carica quando l'utente lo chiede: caricare cambia quello che vede chi gioca.
 
-```bash
-git tag vX.Y.Z <commit della versione>
-git push origin vX.Y.Z
-```
+- **itch.io**: segui la skill `pubblicazione-itch-io`, che fa caricamento con butler, prova dalla pagina, tag e release GitHub.
+- **Altri servizi**: carica coi comandi di `docs/agents/rilasci.md`; se il caricamento vuole l'account dell'utente, lo lancia lui e tu gli dai il comando. Poi:
+
+  ```bash
+  git tag vX.Y.Z <commit della versione>
+  git push origin vX.Y.Z
+  ```
 
 Fatto quando: il servizio mostra la versione nuova e il tag è su `origin`.
 
-## 6. Devlog (facoltativo)
+## 6. Devlog e pagina (facoltativo)
 
-Se il progetto pubblica un devlog (`docs/agents/rilasci.md` lo dice), scrivine la bozza dalla nota del rilascio e mostrala all'utente: lo pubblica lui, o tu dopo il suo ok.
+Se il progetto pubblica un devlog (`docs/agents/rilasci.md` lo dice), scrivi la sua nota partendo dalla nota del rilascio.
+
+- **itch.io**: devlog e, se è cambiata, descrizione della pagina li pubblichi tu con la skill `pubblicazione-itch-io`, nella stessa pubblicazione del passo 5.
+- **Altri servizi**: mostra la bozza all'utente; la pubblica lui, o tu dopo il suo ok.
 
 ## 7. Chiudere la milestone
 
